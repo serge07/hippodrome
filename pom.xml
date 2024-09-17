@@ -27,6 +27,13 @@
             <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- Dependency needed to implement parameterized tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Mockito for mocking -->
         <dependency>
@@ -51,6 +58,15 @@
             <version>1.7.36</version>
         </dependency>
 
+        <!--
+            I see the here you're using the slf4j API to send logging commands to loj4j.
+            Nothing wrong with that approach, although not a common practice.
+            That is for 2 reasons:
+            - There's already a reference implementation for slf4j (logback). For projects that
+              don't declare dependencies that use a different library, logback is usually the binding of choice.
+            - There might be performance implications due to the Facade pattern used in the bridge.
+              Beware we are not invoking the original, underlying logging API, but a layer on top of it.
+        -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
@@ -71,9 +87,6 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.22.2</version>
-            <configuration>
-                <skipTests>true</skipTests>
-            </configuration>
         </plugin>
     </plugins>
 

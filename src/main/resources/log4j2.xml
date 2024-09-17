@@ -6,7 +6,8 @@
     <Appenders>
         <RollingFile name="RollingFile" fileName="${logDir}/hippodrome.log"
                      filePattern="${logDir}/hippodrome.%d{yyyy-MM-dd}.log">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!-- The pattern needed to be adjusted to exactly match the output required by the assignment -->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level %logger{36}: %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10MB"/>
@@ -19,7 +20,8 @@
             </DefaultRolloverStrategy>
         </RollingFile>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!-- Pattern also adjusted here -->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level %logger{36}: %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
